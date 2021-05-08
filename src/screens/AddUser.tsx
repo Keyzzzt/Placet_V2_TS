@@ -25,8 +25,18 @@ const AddUser: React.FC = () => {
   const { textFieldError, ageError, allGood } = useTypedSelector(
     (state) => state.addUserErrors
   );
-
   const dispatch = useDispatch();
+
+  function getAge(dateString: string) {
+    var today = new Date();
+    var birthDate = new Date(dateString);
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+    return age;
+  }
 
   const formValidation = () => {
     if (
@@ -44,15 +54,9 @@ const AddUser: React.FC = () => {
       dispatch({ type: TEXT_FIELD_ERROR });
     } else if (occupation === '') {
       dispatch({ type: TEXT_FIELD_ERROR });
-    }
-    // else if (
-    //   (new Date().getTime() - new Date(birthDate)) /
-    //     (24 * 3600 * 365.25 * 1000).toFixed() <
-    //   18
-    // ) {
-    //   dispatch({ type: AGE_ERROR });
-    // }
-    else {
+    } else if (getAge(birthDate) < 18) {
+      dispatch({ type: AGE_ERROR });
+    } else {
       dispatch({ type: ALL_GOOD });
     }
   };
