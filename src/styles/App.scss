@@ -1,0 +1,160 @@
+$main-color: #00b4b5;
+$border-color: #ddd;
+$error-color: #df5555;
+$hover-color: rgba(0, 153, 204, 0.1);
+
+
+
+.main-container {
+  max-width: 1200px;
+  min-height: 80vh;
+  margin: 50px auto;
+  padding: 20px;
+  border: 2px solid $main-color;
+  border-radius: 15px 0 15px 0;
+
+  // table
+  .table {
+    min-width: 50vh;
+    margin: 0 auto;
+    border-collapse: collapse; /*reduces space between cells*/
+    color: $main-color;
+    border-radius: 5px 0 5px 0 ;
+    overflow: hidden;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
+  }
+  .user-field {
+    cursor: pointer;
+  }
+
+  .table thead tr {
+    background-color: $main-color;
+    color: #fff;
+    text-align: left;
+    
+  }
+  .table th {
+    padding: 10px 20px;
+    text-align: left;
+  }
+
+  .table td {
+    padding: 12px 20px;
+  }
+
+  .table tbody tr {
+    border-bottom: 1px solid $border-color;
+    transition: .3s;
+  }
+
+  .table tbody tr:nth-of-type(even) {
+    background-color: #fdfcfc;
+  }
+
+
+  .table tbody tr:hover {
+    cursor: pointer;
+    background: $hover-color;
+  }
+  .avatar{
+    border-radius: 5px 0 5px 0;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
+
+  }
+
+  // /table
+
+  // Buttons
+  .button-container {
+    width: 320px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+  }
+  .button {
+    background: $main-color;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+
+    width: 130px;
+    padding: 10px 30px;
+    margin: 0 15px;
+    border: none;
+    border-radius: 5px 0 5px 0;
+    color: #fff;
+    cursor: pointer;
+  }
+  // /Buttons
+
+  // Form
+  .form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid $main-color;
+    border-radius: 15px 0 15px 0;
+    padding: 20px;
+    &-group input,
+    &-group select {
+      outline: none;
+      padding: 10px 5px;
+      width: 320px;
+      margin: 10px;
+      border: 2px solid $main-color;
+      border-radius: 5px 0 5px 0;
+
+    }
+    &-group select{
+      width: 335px;
+      cursor: pointer;
+
+    }
+    .error-message,
+    .success-message {
+      padding: 10px 10px;
+      margin: 5px 0;
+      width: 400px;
+      border-radius: 5px 0 5px 0;
+      color: #fff;
+      text-align: center;
+      }
+      .error-message{
+      background: #df5555;
+
+      }
+      .success-message{
+        background: #00b4b5;
+
+      }
+  }
+  
+/*Loader */
+.loader:before{
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 60px;
+    width: 60px;
+    margin-top: -30px;
+    margin-left: -30px;
+    border: 3px solid transparent;
+    border-radius: 50%;
+    z-index: 100;
+}
+.loader:before {
+    border-top-color: #00b4b5;
+    border-bottom-color: #00b4b5;
+    animation: spinner .7s linear infinite;
+}
+
+@keyframes spinner {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+  // /Form
+}
+
