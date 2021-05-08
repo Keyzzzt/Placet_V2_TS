@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useTypedSelector } from '../hooks/useTypedSelector';
+
 import '../styles/App.scss';
 
 import {
@@ -13,12 +15,13 @@ import {
 } from '../constants/usersConstants';
 import Loader from '../components/Loader';
 
-const UsersList = () => {
+const UsersList: React.FC = () => {
   const [clickedShowMore, setClickedShowMore] = useState(false);
   const dispatch = useDispatch();
 
-  const { loading, error, users } = useSelector((state) => state.usersList);
-  const { pageValue } = useSelector((state) => state.pageValue);
+  const { loading, error, users } = useTypedSelector(
+    (state) => state.usersList
+  );
 
   useEffect(() => {
     dispatch(usersListAction());
@@ -32,7 +35,7 @@ const UsersList = () => {
     setClickedShowMore(false);
     dispatch(usersListAction());
   };
-  const singleUserPageHandler = (id) => {
+  const singleUserPageHandler = (id: string) => {
     dispatch({ type: SINGLE_USER_PAGE, payload: 'single' });
     dispatch(getSingleUserAction(id));
   };

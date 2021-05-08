@@ -1,5 +1,11 @@
 export interface singleUserInitialStateType {
-  user: {};
+  user: {
+    id: number;
+    first_name: string;
+    last_name: string;
+    email: string;
+    avatar: string;
+  };
   loading: boolean;
   error: null | string;
 }
@@ -20,7 +26,13 @@ interface LoadSingleUserRequest {
 }
 interface LoadSingleUserSuccess {
   type: SingleUserActionTypes.LOAD_SINGLE_USER_SUCCESS;
-  payload: {};
+  payload: {
+    id: number;
+    first_name: string;
+    last_name: string;
+    email: string;
+    avatar: string;
+  };
 }
 interface LoadSingleUserFail {
   type: SingleUserActionTypes.LOAD_SINGLE_USER_FAIL;

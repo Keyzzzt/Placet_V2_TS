@@ -1,5 +1,11 @@
 export interface UsersListInitialStateType {
-  users: {}[];
+  users: {
+    id: string;
+    first_name: string;
+    last_name: string;
+    email: string;
+    avatar: string;
+  }[];
   loading: boolean;
   error: null | string;
 }
@@ -22,11 +28,23 @@ interface UsersListRequest {
 }
 interface UsersListSuccess {
   type: UsersListActionTypes.USERS_LIST_SUCCESS;
-  payload: {}[];
+  payload: {
+    id: string;
+    first_name: string;
+    last_name: string;
+    email: string;
+    avatar: string;
+  }[];
 }
 interface LoadMoreUsersListSuccess {
   type: UsersListActionTypes.LOAD_MORE_USERS_SUCCESS;
-  payload: {}[];
+  payload: {
+    id: string;
+    first_name: string;
+    last_name: string;
+    email: string;
+    avatar: string;
+  }[];
 }
 interface UsersListFail {
   type: UsersListActionTypes.USERS_LIST_FAIL;

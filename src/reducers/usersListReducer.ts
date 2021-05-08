@@ -25,7 +25,15 @@ import {
 } from '../types/addUserErrors';
 
 const usersListInitialState: UsersListInitialStateType = {
-  users: [],
+  users:
+    // {
+    //   id: number,
+    //   first_name: string,
+    //   last_name: string,
+    //   email: string,
+    //   avatar: string,
+    // }
+    [],
   loading: false,
   error: null,
 };
@@ -48,7 +56,13 @@ export const usersListReducer = (
 };
 
 const singleUserInitialState: singleUserInitialStateType = {
-  user: {},
+  user: {
+    id: 0,
+    first_name: '',
+    last_name: '',
+    email: '',
+    avatar: '',
+  },
   loading: false,
   error: null,
 };
