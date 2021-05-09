@@ -1,5 +1,10 @@
-// table
-.table {
+.table-small{
+  display: none;
+}
+.table-large,
+.table-small,
+.table-large-all
+ {
     margin: 0 auto;
     border-collapse: collapse;
     color: $main-color;
@@ -17,7 +22,7 @@
       }
     th {
         padding: 10px 20px;
-        text-align: left;
+        text-align: center;
       }
     
     td {
@@ -47,3 +52,11 @@
   }
 
 
+  @media (max-width: $breakpoint-sm-max) {
+    .table-large{
+      display: none;
+    }
+    .table-small{
+      display: table;
+    }
+}

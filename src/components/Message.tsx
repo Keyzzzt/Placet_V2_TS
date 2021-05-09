@@ -1,8 +1,6 @@
 import React from 'react';
 import '../styles/App.scss';
 
-import Loader from './Loader'
-
 interface MessageProps {
   type: string;
   message: string;

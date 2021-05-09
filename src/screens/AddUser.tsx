@@ -30,22 +30,13 @@ const AddUser: React.FC = () => {
   }
 
   const formValidation = () => {
-    if (
-      name === '' ||
-      name === null ||
-      RegExp(/[!@#$%^&*(),.?":{}|<>]/).test(name) ||
-      RegExp(/[0-9]/).test(name) ||
-      !RegExp(/^\w+$/).test(name)
-    ) {
+    if (!RegExp(/^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/g).test(name.trim())) {
       dispatch({ type: AddUserErrorsActionTypes.TEXT_FIELD_ERROR });
-    } else if (
-      RegExp(/[!@#$%^&*(),.?":{}|<>]/).test(surname) ||
-      RegExp(/[0-9]/).test(surname)
-    ) {
+    } else if (!RegExp(/^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/g).test(surname.trim())) {
       dispatch({ type: AddUserErrorsActionTypes.TEXT_FIELD_ERROR });
     } else if (occupation === '') {
       dispatch({ type: AddUserErrorsActionTypes.TEXT_FIELD_ERROR });
-    } else if (getAge(age) < 18) {
+    } else if (parseInt(age) < 18) {
       dispatch({ type: AddUserErrorsActionTypes.AGE_ERROR });
     } else {
       dispatch({ type: AddUserErrorsActionTypes.ALL_GOOD });
@@ -160,7 +151,7 @@ const AddUser: React.FC = () => {
             }
           >
             <option value=''>Choose occupation</option>
-            <option value='frontend'>Frontend</option>
+            <option value='Frontend'>Frontend</option>
             <option value='Backend'>Backend</option>
             <option value='Fullstack'>Fullstack</option>
           </select>

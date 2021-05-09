@@ -71,7 +71,7 @@ const UsersList: React.FC = () => {
               Add
             </button>
           </div>
-          <table className='table'>
+          <table className='table-large-all'>
             <thead>
               <tr>
                 <th>Name</th>

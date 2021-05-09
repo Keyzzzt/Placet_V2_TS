@@ -34,7 +34,7 @@ const SingleUser: React.FC = () => {
             Back
           </button>
         </div>
-        <table className='table'>
+        <table className='table-large'>
           <thead>
             <tr>
               <th>ID</th>
@@ -53,6 +53,36 @@ const SingleUser: React.FC = () => {
               <td>
                 <img className='avatar' src={user.avatar} alt='Avatar' />
               </td>
+            </tr>
+          </tbody>
+        </table>
+        <table className='table-small'>
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>User</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>ID</td>
+              <td>{user.id}</td>
+            </tr>
+            <tr>
+              <td>Email</td>
+              <td>{user.email}</td>
+            </tr>
+            <tr>
+              <td>Name</td>
+              <td>{user.first_name}</td>
+            </tr>
+            <tr>
+              <td>Surname</td>
+              <td>{user.last_name}</td>
+            </tr>
+            <tr>
+              <td>Avatar</td>
+              <td><img className='avatar' src={user.avatar} alt='Avatar' /></td>
             </tr>
           </tbody>
         </table>
