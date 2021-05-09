@@ -1,6 +1,6 @@
 import React from 'react';
-import { useTypedSelector } from '../hooks/useTypedSelector';
 import '../styles/App.scss';
+import { useTypedSelector } from '../hooks/useTypedSelector';
 
 import UsersList from './UsersList';
 import SingleUser from './SingleUser';

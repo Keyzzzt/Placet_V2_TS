@@ -1,32 +1,23 @@
 import React, { FormEvent } from 'react';
+import '../styles/App.scss';
 import { useDispatch } from 'react-redux';
 import { useTypedSelector } from '../hooks/useTypedSelector';
+import { AddUserActionTypes } from '../types/addUser';
+import { PageValueActionTypes } from '../types/pageValue';
+import { AddUserErrorsActionTypes } from '../types/addUserErrors';
 
-import '../styles/App.scss';
-import '../components/Loader';
-
-import {
-  NAME,
-  SURNAME,
-  EMAIL,
-  BIRTH_DATE,
-  OCCUPATION,
-  ALL_USERS_PAGE,
-  TEXT_FIELD_ERROR,
-  AGE_ERROR,
-  RESET_ERRORS,
-  ALL_GOOD,
-} from '../constants/usersConstants';
+import Message from '../components/Message'
 
 const AddUser: React.FC = () => {
-  const { name, surname, email, birthDate, occupation } = useTypedSelector(
+  const user = useTypedSelector(
     (state) => state.addUser
   );
+  const { name, surname, email, age, occupation } = user;
   const { textFieldError, ageError, allGood } = useTypedSelector(
     (state) => state.addUserErrors
   );
   const dispatch = useDispatch();
-
+  
   function getAge(dateString: string) {
     var today = new Date();
     var birthDate = new Date(dateString);
@@ -46,18 +37,18 @@ const AddUser: React.FC = () => {
       RegExp(/[0-9]/).test(name) ||
       !RegExp(/^\w+$/).test(name)
     ) {
-      dispatch({ type: TEXT_FIELD_ERROR });
+      dispatch({ type: AddUserErrorsActionTypes.TEXT_FIELD_ERROR });
     } else if (
       RegExp(/[!@#$%^&*(),.?":{}|<>]/).test(surname) ||
       RegExp(/[0-9]/).test(surname)
     ) {
-      dispatch({ type: TEXT_FIELD_ERROR });
+      dispatch({ type: AddUserErrorsActionTypes.TEXT_FIELD_ERROR });
     } else if (occupation === '') {
-      dispatch({ type: TEXT_FIELD_ERROR });
-    } else if (getAge(birthDate) < 18) {
-      dispatch({ type: AGE_ERROR });
+      dispatch({ type: AddUserErrorsActionTypes.TEXT_FIELD_ERROR });
+    } else if (getAge(age) < 18) {
+      dispatch({ type: AddUserErrorsActionTypes.AGE_ERROR });
     } else {
-      dispatch({ type: ALL_GOOD });
+      dispatch({ type: AddUserErrorsActionTypes.ALL_GOOD });
     }
   };
 
@@ -75,7 +66,12 @@ const AddUser: React.FC = () => {
           </button>
           <button
             type='submit'
-            onClick={() => dispatch({ type: ALL_USERS_PAGE, payload: 'list' })}
+            onClick={() =>
+              dispatch({
+                type: PageValueActionTypes.ALL_USERS_PAGE,
+                payload: 'list',
+              })
+            }
             className='button'
           >
             Back
@@ -83,8 +79,15 @@ const AddUser: React.FC = () => {
         </div>
         <div className='form-group'>
           <input
-            onFocus={() => dispatch({ type: RESET_ERRORS })}
-            onChange={(e) => dispatch({ type: NAME, payload: e.target.value })}
+            onFocus={() =>
+              dispatch({ type: AddUserErrorsActionTypes.RESET_ERRORS })
+            }
+            onChange={(e) =>
+              dispatch({
+                type: AddUserActionTypes.NAME,
+                payload: e.target.value,
+              })
+            }
             type='text'
             placeholder='Name'
             value={name}
@@ -94,9 +97,14 @@ const AddUser: React.FC = () => {
 
         <div className='form-group'>
           <input
-            onFocus={() => dispatch({ type: RESET_ERRORS })}
+            onFocus={() =>
+              dispatch({ type: AddUserErrorsActionTypes.RESET_ERRORS })
+            }
             onChange={(e) =>
-              dispatch({ type: SURNAME, payload: e.target.value })
+              dispatch({
+                type: AddUserActionTypes.SURNAME,
+                payload: e.target.value,
+              })
             }
             type='text'
             placeholder='Surname'
@@ -107,8 +115,15 @@ const AddUser: React.FC = () => {
 
         <div className='form-group'>
           <input
-            onFocus={() => dispatch({ type: RESET_ERRORS })}
-            onChange={(e) => dispatch({ type: EMAIL, payload: e.target.value })}
+            onFocus={() =>
+              dispatch({ type: AddUserErrorsActionTypes.RESET_ERRORS })
+            }
+            onChange={(e) =>
+              dispatch({
+                type: AddUserActionTypes.EMAIL,
+                payload: e.target.value,
+              })
+            }
             type='email'
             placeholder='Email'
             value={email}
@@ -117,9 +132,14 @@ const AddUser: React.FC = () => {
         </div>
         <div className='form-group'>
           <input
-            onFocus={() => dispatch({ type: RESET_ERRORS })}
+            onFocus={() =>
+              dispatch({ type: AddUserErrorsActionTypes.RESET_ERRORS })
+            }
             onChange={(e) =>
-              dispatch({ type: BIRTH_DATE, payload: e.target.value })
+              dispatch({
+                type: AddUserActionTypes.AGE,
+                payload: getAge(e.target.value),
+              })
             }
             type='date'
             placeholder='Date of Birth'
@@ -128,10 +148,15 @@ const AddUser: React.FC = () => {
         </div>
         <div className='form-group'>
           <select
-            onFocus={() => dispatch({ type: RESET_ERRORS })}
+            onFocus={() =>
+              dispatch({ type: AddUserErrorsActionTypes.RESET_ERRORS })
+            }
             name='occupation'
             onChange={(e) =>
-              dispatch({ type: OCCUPATION, payload: e.target.value })
+              dispatch({
+                type: AddUserActionTypes.OCCUPATION,
+                payload: e.target.value,
+              })
             }
           >
             <option value=''>Choose occupation</option>
@@ -141,16 +166,12 @@ const AddUser: React.FC = () => {
           </select>
         </div>
         {textFieldError && (
-          <div className='error-message'>
-            All fields should be filled out with latin letters only.
-          </div>
+          <Message type="error" message="All fields should be filled out with latin letters only."/>
         )}
         {ageError && (
-          <div className='error-message'>
-            You should be at least 18 years old to proceed.
-          </div>
+          <Message type="error" message="You should be at least 18 years old to proceed."/>
         )}
-        {allGood && <div className='success-message'>All good!</div>}
+        {allGood && <Message type="success" message="User successfully added." userData={true} user={user} />}
       </form>
     </div>
   );

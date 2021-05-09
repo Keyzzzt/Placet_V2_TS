@@ -86,7 +86,7 @@ const addUserInitialState: AddUserInitialStateType = {
   name: '',
   surname: '',
   email: '',
-  birthDate: '',
+  age: '',
   occupation: '',
 };
 export const addUserReducer = (
@@ -109,10 +109,10 @@ export const addUserReducer = (
         ...state,
         email: action.payload,
       };
-    case AddUserActionTypes.BIRTH_DATE:
+    case AddUserActionTypes.AGE:
       return {
         ...state,
-        birthDate: action.payload,
+        age: action.payload,
       };
     case AddUserActionTypes.OCCUPATION:
       return {

@@ -2,17 +2,17 @@ export interface AddUserInitialStateType {
   name: string;
   surname: string;
   email: string;
-  birthDate: string;
+  age: string;
   occupation: string;
 }
 export enum AddUserActionTypes {
   NAME = 'NAME',
   SURNAME = 'SURNAME',
   EMAIL = 'EMAIL',
-  BIRTH_DATE = 'BIRTH_DATE',
+  AGE = 'AGE',
   OCCUPATION = 'OCCUPATION',
 }
-export type AddUserAction = Name | Surname | Email | BirthDate | Occupation;
+export type AddUserAction = Name | Surname | Email | Age | Occupation;
 
 interface Name {
   type: AddUserActionTypes.NAME;
@@ -26,8 +26,8 @@ interface Email {
   type: AddUserActionTypes.EMAIL;
   payload: string;
 }
-interface BirthDate {
-  type: AddUserActionTypes.BIRTH_DATE;
+interface Age {
+  type: AddUserActionTypes.AGE;
   payload: string;
 }
 interface Occupation {

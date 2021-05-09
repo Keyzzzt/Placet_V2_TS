@@ -1,24 +1,21 @@
 import React, { useEffect, useState } from 'react';
+import '../styles/App.scss';
 import { useDispatch } from 'react-redux';
 import { useTypedSelector } from '../hooks/useTypedSelector';
-
-import '../styles/App.scss';
-
+import { PageValueActionTypes } from '../types/pageValue';
 import {
   usersListAction,
   loadMoreUsersAction,
   getSingleUserAction,
 } from '../actions/userActions';
-import {
-  ADD_NEW_USER_PAGE,
-  SINGLE_USER_PAGE,
-} from '../constants/usersConstants';
+
 import Loader from '../components/Loader';
+import Message from '../components/Message'
 
 const UsersList: React.FC = () => {
-  const [clickedShowMore, setClickedShowMore] = useState(false);
   const dispatch = useDispatch();
 
+  const [clickedShowMore, setClickedShowMore] = useState(false);
   const { loading, error, users } = useTypedSelector(
     (state) => state.usersList
   );
@@ -36,12 +33,17 @@ const UsersList: React.FC = () => {
     dispatch(usersListAction());
   };
   const singleUserPageHandler = (id: string) => {
-    dispatch({ type: SINGLE_USER_PAGE, payload: 'single' });
+    dispatch({
+      type: PageValueActionTypes.SINGLE_USER_PAGE,
+      payload: 'single',
+    });
     dispatch(getSingleUserAction(id));
   };
 
   return (
     <div className='usersListScreen-container'>
+       {loading && <Loader/>}
+      {error && <Message type="error" message={error}/>}
       {!users ? (
         <Loader />
       ) : (
@@ -60,7 +62,10 @@ const UsersList: React.FC = () => {
             <button
               className='button'
               onClick={() =>
-                dispatch({ type: ADD_NEW_USER_PAGE, payload: 'add' })
+                dispatch({
+                  type: PageValueActionTypes.ADD_NEW_USER_PAGE,
+                  payload: 'add',
+                })
               }
             >
               Add

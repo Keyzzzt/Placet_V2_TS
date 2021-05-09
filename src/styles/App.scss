@@ -1,8 +1,5 @@
-$main-color: #00b4b5;
-$border-color: #ddd;
-$error-color: #df5555;
-$hover-color: rgba(0, 153, 204, 0.1);
-
+@import './variables.scss';
+@import './table.scss';
 
 
 .main-container {
@@ -13,80 +10,26 @@ $hover-color: rgba(0, 153, 204, 0.1);
   border: 2px solid $main-color;
   border-radius: 15px 0 15px 0;
 
-  // table
-  .table {
-    min-width: 50vh;
-    margin: 0 auto;
-    border-collapse: collapse; /*reduces space between cells*/
-    color: $main-color;
-    border-radius: 5px 0 5px 0 ;
-    overflow: hidden;
-    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
-  }
-  .user-field {
-    cursor: pointer;
-  }
-
-  .table thead tr {
-    background-color: $main-color;
-    color: #fff;
-    text-align: left;
-    
-  }
-  .table th {
-    padding: 10px 20px;
-    text-align: left;
-  }
-
-  .table td {
-    padding: 12px 20px;
-  }
-
-  .table tbody tr {
-    border-bottom: 1px solid $border-color;
-    transition: .3s;
-  }
-
-  .table tbody tr:nth-of-type(even) {
-    background-color: #fdfcfc;
-  }
-
-
-  .table tbody tr:hover {
-    cursor: pointer;
-    background: $hover-color;
-  }
-  .avatar{
-    border-radius: 5px 0 5px 0;
-    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
-
-  }
-
-  // /table
-
-  // Buttons
   .button-container {
-    width: 320px;
-    margin: 0 auto;
-    padding: 20px;
+    width: 300px;
+    margin: 10px auto;
     display: flex;
     justify-content: center;
   }
   .button {
     background: $main-color;
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
-
     width: 130px;
     padding: 10px 30px;
-    margin: 0 15px;
     border: none;
     border-radius: 5px 0 5px 0;
     color: #fff;
     cursor: pointer;
   }
-  // /Buttons
+  .button + .button {
+    margin-left: 15px;
+  }
 
-  // Form
   .form {
     display: flex;
     flex-direction: column;
@@ -99,37 +42,47 @@ $hover-color: rgba(0, 153, 204, 0.1);
     &-group select {
       outline: none;
       padding: 10px 5px;
-      width: 320px;
+      width: 300px;
       margin: 10px;
       border: 2px solid $main-color;
       border-radius: 5px 0 5px 0;
-
     }
     &-group select{
-      width: 335px;
+      width: 313px;
       cursor: pointer;
 
     }
-    .error-message,
-    .success-message {
-      padding: 10px 10px;
-      margin: 5px 0;
-      width: 400px;
-      border-radius: 5px 0 5px 0;
-      color: #fff;
-      text-align: center;
-      }
-      .error-message{
-      background: #df5555;
-
-      }
-      .success-message{
-        background: #00b4b5;
-
-      }
   }
-  
-/*Loader */
+.message{
+  .error-message,
+  .success-message {
+    padding: 10px 10px;
+    margin: 5px 0;
+    min-width: 200px;
+    border-radius: 5px 0 5px 0;
+    color: #fff;
+    text-align: left;
+    }
+    .error-message{
+    background: #df5555;
+
+    }
+    .success-message{
+      background: #00b4b5;
+    }
+    &-title{
+      font-size: 20px;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    &-body{
+      margin-bottom: 10px;
+      border-bottom: 1px solid #fff;
+      border-top: 1px solid #fff;
+      padding: 10px 20px;
+    }
+}
+
 .loader:before{
     content: '';
     position: absolute;
@@ -155,6 +108,6 @@ $hover-color: rgba(0, 153, 204, 0.1);
     }
 }
 
-  // /Form
+
 }
 

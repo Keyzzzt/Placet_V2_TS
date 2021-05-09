@@ -1,0 +1,49 @@
+// table
+.table {
+    margin: 0 auto;
+    border-collapse: collapse;
+    color: $main-color;
+    border-radius: 5px 0 5px 0 ;
+    overflow: hidden;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
+    min-width: 300px;
+    .user-field {
+      cursor: pointer;
+    }
+    thead tr {
+        background-color: $main-color;
+        color: #fff;
+        text-align: center;
+      }
+    th {
+        padding: 10px 20px;
+        text-align: left;
+      }
+    
+    td {
+        padding: 12px 20px;
+        text-align: center;
+      }
+    
+    tbody tr {
+        border-bottom: 1px solid $border-color;
+        transition: .3s;
+      }
+    
+    tbody tr:nth-of-type(even) {
+        background-color: #fdfcfc;
+      }
+    
+    
+    tbody tr:hover {
+        cursor: pointer;
+        background: $hover-color;
+      }
+    .avatar{
+        border-radius: 5px 0 5px 0;
+        box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
+    
+      }
+  }
+
+
